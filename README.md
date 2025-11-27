@@ -107,6 +107,8 @@ todo_project/
     ├── settings.py
     └── urls.py
 
+---
+
 ## 🏃‍♀️ How to Run the App
 
 1.  **Activate the Environment:**
