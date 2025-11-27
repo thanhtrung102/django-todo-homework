@@ -106,7 +106,7 @@ todo_project/
 └── todo_project/          # Global Settings
     ├── settings.py
     └── urls.py
-```text
+```
 ---
 
 ## 🏃‍♀️ How to Run the App
