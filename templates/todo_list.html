@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'todo_create' %}" class="btn btn-primary mb-3">Add New Task</a>
+
+    <ul class="list-group">
+        {% for todo in todos %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                {% if todo.is_resolved %}
+                    <del>{{ todo.title }}</del> (Done)
+                {% else %}
+                    {{ todo.title }}
+                {% endif %}
+                <small class="text-muted">- Due: {{ todo.due_date }}</small>
+            </span>
+
+            <div>
+                <form action="{% url 'todo_toggle_status' todo.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-secondary">
+                        {% if todo.is_resolved %}Undo{% else %}Done{% endif %}
+                    </button>
+                </form>
+
+                <form action="{% url 'todo_delete' todo.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger">X</button>
+                </form>
+            </div>
+        </li>
+        {% empty %}
+        <p>No tasks yet!</p>
+        {% endfor %}
+    </ul>
+{% endblock %}
